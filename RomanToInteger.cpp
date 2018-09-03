@@ -1,58 +1,23 @@
-int help(char c)
-{
-    if(c=='X')
-    return 10;
-    if(c=='V')
-    return 5;
-    if(c=='I')
-    return 1;
-    if(c=='L')
-    return 50;
+string Solution::intToRoman(int A) {
     
-    if(c=='C')
-    return 100;
-    if(c=='D')
-    return 500;
-    if(c=='M')
-    return 1000;
+   
+  int n[] = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};   
+string r[] = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+    int i=0;
+    string ans;
     
-    
-}
-
-
-int Solution::romanToInt(string A) {
-    int sum=0;
-    int n=A.size()-1;
-    int s;
-    int tmp=INT_MIN;
-    for(int i=0;i<A.size();)
+    while(A!=0)
     {
-        char c=A[i];
-        int count=1;
+        while(A>=n[i])
+        {
+            A=A-n[i];
+            ans=ans+r[i];
+        }
         i++;
-        while(i<A.length()&&c==A[i])
-        {
-            count++;
-            i++;
-        }
-        s=help(c);
-        if(i==A.length())
-        {
-            sum=sum+count*s;
-            return sum;
-        }
-         
-        int y=s*count;
-        tmp=help(A[i]);
-        if(tmp>s)
-       sum=sum-y;
-       else
-        sum=sum+y;
+        
+        
+        
+        
     }
-    
-    
-    return sum;
-    
-    
-    
+    return ans;
 }
